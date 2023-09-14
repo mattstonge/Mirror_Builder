@@ -5,6 +5,7 @@
 #
 # MIT License ( https://opensource.org/license/mit/ )
 #
+# v1.0  9/14/2023
 ##################################
 
 
@@ -56,7 +57,7 @@ function InstallSoftware()
         echo $MYOUTPUT | logger	
 	dnf install -y httpd
 
-	InitalReposync
+	InitialReposync
 }
 
 function InitialReposync()
@@ -107,14 +108,15 @@ function CronMaster()
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
 
-	cat <<EOF > /etc/cron.hourly/0reposync
+	echo <<-EOF > /etc/cron.hourly/0reposync
 	#!/usr/bin/bash
 	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-baseos-rpms
 	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-baseos-rpms
 	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-baseos-rpms
 	echo "repos synced" | logger
 
-	EOF 
+	EOF
+	#
 
 	chmod +x /etc/cron.hourly/0reposync
 
@@ -123,15 +125,14 @@ function CronMaster()
 }
 
 
-funtion AllDone()
+function AllDone()
 {
 	MYOUTPUT="$LOGGERPREF All Done... Enjoy "
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
 
-	exit 0
-
 }
+
 
 
 
