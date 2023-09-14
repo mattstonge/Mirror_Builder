@@ -41,5 +41,81 @@ function CheckRegStatus()
 
 }
 
+function InstallSoftware()
+{
+	MYOUTPUT="$LOGGERPREF  Installing Software: yum-utils "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+	dnf install -y yum-utils
+	MYOUTPUT="$LOGGERPREF  Setting Release Version $MYRELVER"
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+	subscription-manager release --set $MYRELVER
+	MYOUTPUT="$LOGGERPREF Installing Software: httpd "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger	
+	dnf install -y httpd
+
+}
+
+function InitialReposync()
+{
+	MYOUTPUT="$LOGGERPREF Intial Sync of BaseOS Repo "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+	
+	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-baseos-rpms
+	
+	MYOUTPUT="$LOGGERPREF Intial Sync of AppStream Repo "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+
+	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-appstream-rpms
+
+	MYOUTPUT="$LOGGERPREF Intial Sync of Supplementary Repo "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+
+	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-supplementary-rpms
+
+}
+
+function InitializingWeb()
+{
+	MYOUTPUT="$LOGGERPREF Intializing Web Services "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+
+	systemctl enable --now httpd.service
+	
+	MYOUTPUT="$LOGGERPREF Configuring Firewall for HTTP "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+	
+	firewall-cmd --add-service=http --permanent
+	firewall-cmd --reload
+
+}
+
+function CronMaster()
+{
+	MYOUTPUT="$LOGGERPREF Building a crontab file "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+
+
+
+}
+
+
+funtion AllDone()
+{
+	MYOUTPUT="$LOGGERPREF All Done... Enjoy "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+
+}
+
+
 
 CheckRegStatus
