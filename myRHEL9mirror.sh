@@ -38,7 +38,7 @@ function CheckRegStatus()
 	echo $SUBSTATUS
 	echo "$LOGGERPREF  $SUBSTATUS" | logger
 
-
+	InstallSoftware
 }
 
 function InstallSoftware()
@@ -56,6 +56,7 @@ function InstallSoftware()
         echo $MYOUTPUT | logger	
 	dnf install -y httpd
 
+	InitalReposync
 }
 
 function InitialReposync()
@@ -78,6 +79,8 @@ function InitialReposync()
 
 	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-supplementary-rpms
 
+
+	InitializingWeb
 }
 
 function InitializingWeb()
@@ -95,6 +98,7 @@ function InitializingWeb()
 	firewall-cmd --add-service=http --permanent
 	firewall-cmd --reload
 
+	CronMaster
 }
 
 function CronMaster()
@@ -103,7 +107,18 @@ function CronMaster()
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
 
+	cat <<EOF > /etc/cron.hourly/0reposync
+	#!/usr/bin/bash
+	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-baseos-rpms
+	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-baseos-rpms
+	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-baseos-rpms
+	echo "repos synced" | logger
 
+	EOF 
+
+	chmod +x /etc/cron.hourly/0reposync
+
+	AllDone
 
 }
 
@@ -113,6 +128,8 @@ funtion AllDone()
 	MYOUTPUT="$LOGGERPREF All Done... Enjoy "
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
+
+	exit 0
 
 }
 
