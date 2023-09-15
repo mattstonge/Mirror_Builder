@@ -5,6 +5,7 @@
 #
 # MIT License ( https://opensource.org/license/mit/ )
 #
+# v1.0  9/15/2023
 ##################################
 
 
@@ -38,6 +39,97 @@ function CheckRegStatus()
 	echo $SUBSTATUS
 	echo "$LOGGERPREF  $SUBSTATUS" | logger
 
+	InstallSoftware	
+}
+
+function InstallSoftware()
+{
+        MYOUTPUT="$LOGGERPREF  Installing Software: yum-utils "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+        dnf install -y yum-utils
+        MYOUTPUT="$LOGGERPREF  Setting Release Version $MYRELVER"
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+        subscription-manager release --set $MYRELVER
+        MYOUTPUT="$LOGGERPREF Installing Software: httpd "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+        dnf install -y httpd
+
+        InitialReposync
+}
+
+function InitialReposync()
+{
+        MYOUTPUT="$LOGGERPREF Intial Sync of BaseOS Repo "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+
+        reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
+
+        MYOUTPUT="$LOGGERPREF Intial Sync of AppStream Repo "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+
+        reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-appstream-rpms
+
+        MYOUTPUT="$LOGGERPREF Intial Sync of Supplementary Repo "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+
+        reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-supplementary-rpms
+
+
+        InitializingWeb
+}
+
+function InitializingWeb()
+{
+        MYOUTPUT="$LOGGERPREF Intializing Web Services "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+
+        systemctl enable --now httpd.service
+
+        MYOUTPUT="$LOGGERPREF Configuring Firewall for HTTP "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+
+        firewall-cmd --add-service=http --permanent
+        firewall-cmd --reload
+
+        CronMaster
+}
+
+function CronMaster()
+{
+        MYOUTPUT="$LOGGERPREF Building a crontab file "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+
+        echo <<-EOF > /etc/cron.hourly/0reposync
+        #!/usr/bin/bash
+        reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
+        reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
+        reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
+        echo "repos synced" | logger
+
+        EOF
+        #
+
+        chmod +x /etc/cron.hourly/0reposync
+
+        AllDone
+
+}
+
+
+function AllDone()
+{
+        MYOUTPUT="$LOGGERPREF All Done... Enjoy "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
 
 }
 
