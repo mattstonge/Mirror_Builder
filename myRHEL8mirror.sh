@@ -104,21 +104,21 @@ function InitializingWeb()
 
 function CronMaster()
 {
-        MYOUTPUT="$LOGGERPREF Building a crontab file "
+
+        MYOUTPUT="$LOGGERPREF Building a crontab file"
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
 
-        echo <<-EOF > /etc/cron.hourly/0reposync
-        #!/usr/bin/bash
+echo <<EOF > /etc/cron.hourly/0reposync
+#!/usr/bin/bash
 
-        reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
-        reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
-        reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
+reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
+reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
+reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
+echo "repos synced" | logger 
 
-        echo "repos synced" | logger
+EOF
 
-        EOF
-        #
 
         chmod +x /etc/cron.hourly/0reposync
 
