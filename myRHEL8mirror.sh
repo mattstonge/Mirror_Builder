@@ -113,8 +113,8 @@ echo <<EOF > /etc/cron.hourly/0reposync
 #!/usr/bin/bash
 
 reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
-reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
-reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
+reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-appstream-rpms
+reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-supplementary-rpms
 echo "repos synced" | logger 
 
 EOF
