@@ -109,6 +109,7 @@ function CronMaster()
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
 
+
  				cp 0reposync-hourlyR8 /etc/cron.hourly/
 
         chmod +x /etc/cron.hourly/0reposync-hourlyR8
