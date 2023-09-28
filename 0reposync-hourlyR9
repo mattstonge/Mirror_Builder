@@ -1,0 +1,8 @@
+#RHEL9 reposync hourly 
+
+reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-baseos-rpms
+reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-appstream-rpms
+reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-supplementary-rpms
+
+echo "repos sync'ed..." | logger
+

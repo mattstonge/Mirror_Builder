@@ -109,18 +109,9 @@ function CronMaster()
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
 
-echo <<EOF > /etc/cron.hourly/0reposync
-#!/usr/bin/bash
+ 				cp 0reposync-hourlyR8 /etc/cron.hourly/
 
-reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-baseos-rpms
-reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-appstream-rpms
-reposync -p /var/www/html --download-metadata --repoid=rhel-8-for-x86_64-supplementary-rpms
-echo "repos synced" | logger 
-
-EOF
-
-
-        chmod +x /etc/cron.hourly/0reposync
+        chmod +x /etc/cron.hourly/0reposync-hourlyR8
 
         AllDone
 

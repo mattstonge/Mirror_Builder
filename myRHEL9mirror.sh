@@ -5,7 +5,7 @@
 #
 # MIT License ( https://opensource.org/license/mit/ )
 #
-# v1.0  9/14/2023
+# v1.2  9/28/2023
 ##################################
 
 
@@ -104,21 +104,13 @@ function InitializingWeb()
 
 function CronMaster()
 {
-	MYOUTPUT="$LOGGERPREF Building a crontab file "
+	MYOUTPUT="$LOGGERPREF Building a cront.hourly file "
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
 
-	echo <<-EOF > /etc/cron.hourly/0reposync
-	#!/usr/bin/bash
-	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-baseos-rpms
-	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-appstream-rpms
-	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-supplementary-rpms
-	echo "repos synced" | logger
+  cp 0reposync-hourlyR9 /etc/cron.hourly/
 
-	EOF
-	#
-
-	chmod +x /etc/cron.hourly/0reposync
+	chmod +x /etc/cron.hourly/0reposync-hourlyR9
 
 	AllDone
 
