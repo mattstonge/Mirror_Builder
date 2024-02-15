@@ -18,6 +18,7 @@
 
 # set this number to the latest release version number OR the 
 # release version you wish to stop at
+# to be able to leverage ELS the version of RHEL must be at the final release
 MYRELVER=7.9
 
 # Log entry preface - for easy searches
