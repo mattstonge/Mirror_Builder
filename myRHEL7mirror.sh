@@ -49,7 +49,7 @@ function InstallSoftware()
         MYOUTPUT="$LOGGERPREF  Installing Software: yum-utils "
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
-        dnf install -y yum-utils
+        yum install -y yum-utils
         MYOUTPUT="$LOGGERPREF  Setting Release Version $MYRELVER"
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
@@ -57,7 +57,7 @@ function InstallSoftware()
         MYOUTPUT="$LOGGERPREF Installing Software: httpd "
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
-        dnf install -y httpd
+        yum install -y httpd
 
         InitialReposync
 }
