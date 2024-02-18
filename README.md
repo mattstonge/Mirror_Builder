@@ -18,5 +18,6 @@ These repos will syncronize hourly once installed
 4) These mirrors are for your development in-house and may not be shared publicly
 
 5) The initial reposync operation may take several hours (be patient)
+In my initial testing for RHEL7 repos, the first sync'ing took over a day and 160GB of storage 
 
 
