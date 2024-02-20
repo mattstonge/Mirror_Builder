@@ -9,7 +9,7 @@ These repos will syncronize hourly once installed
 
 *REQUIRMENTS:  
 
-1) Plan for at least 80GB per repo to be synced - all repos will be cloned to /var/www/html
+1) Plan for at least 90GB (or more) per repo to be synced - all repos will be cloned to /var/www/html
 
 2) A separate machine or VM is required for each RHEL version (i.e. you cannot reposync both RHEL * & RHEL9 on the same machine)
 
@@ -18,6 +18,9 @@ These repos will syncronize hourly once installed
 4) These mirrors are for your development in-house and may not be shared publicly
 
 5) The initial reposync operation may take several hours (be patient)
-In my initial testing for RHEL7 repos, the first sync'ing took over a day and 160GB of storage 
+In my initial testing for RHEL7 repos, the first sync'ing took over a day and 180GB of storage 
+(this doesn't include ELS yet)
+
+
 
 
