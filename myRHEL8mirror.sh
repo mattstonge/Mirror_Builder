@@ -17,7 +17,7 @@
 
 # set this number to the latest release version number OR the 
 # release version you wish to stop at
-MYRELVER=8.9
+MYRELVER=8.10
 
 # Log entry preface - for easy searches
 LOGGERPREF="[Mirror_Builder] "
