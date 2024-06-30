@@ -5,6 +5,9 @@ reposync -p /var/www/html	--download-metadata --repoid=rhel-7-server-rh-common-r
 reposync -p /var/www/html	--download-metadata --repoid=rhel-7-server-optional-rpms
 reposync -p /var/www/html	--download-metadata --repoid=rhel-7-server-supplementary-rpms
 reposync -p /var/www/html	--download-metadata --repoid=rhel-server-rhscl-7-rpms
+reposync -p /var/www/html --download-metadata --repoid=rhel-7-server-els-rpms
+reposync -p /var/www/html --download-metadata --repoid=rhel-7-server-els-optional-rpms
+
 
 echo "Repos sync'ed..." | logger
 

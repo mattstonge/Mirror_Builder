@@ -108,9 +108,9 @@ function CronMaster()
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
 
-  cp 0reposync-hourlyR9 /etc/cron.hourly/
+  cp 0reposyncR9 /etc/cron.daily/
 
-	chmod +x /etc/cron.hourly/0reposync-hourlyR9
+	chmod +x /etc/cron.daily/0reposyncR9
 
 	AllDone
 

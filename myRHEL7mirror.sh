@@ -94,6 +94,20 @@ function InitialReposync()
 
         reposync -p /var/www/html --download-metadata --repoid=rhel-server-rhscl-7-rpms
 
+        MYOUTPUT="$LOGGERPREF Intial Sync of RHEL 7 Server ELS  Repo "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+ 
+        reposync -p /var/www/html --download-metadata --repoid=rhel-7-server-els-rpms
+
+
+        MYOUTPUT="$LOGGERPREF Intial Sync of RHEL 7 Server Optional ELS Repo "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+ 
+        reposync -p /var/www/html --download-metadata --repoid=rhel-7-server-els-optional-rpms
+
+
         InitializingWeb
 }
 
@@ -123,9 +137,9 @@ function CronMaster()
         echo $MYOUTPUT | logger
 
 
- 	cp 0reposync-hourlyR7 /etc/cron.hourly/
+ 	cp 0reposyncR7 /etc/cron.daily/
 
-        chmod +x /etc/cron.hourly/0reposync-hourlyR7
+        chmod +x /etc/cron.daily/0reposyncR7
 
         AllDone
 
