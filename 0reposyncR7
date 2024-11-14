@@ -1,4 +1,4 @@
-# reposync hourly for RHEL 7
+# reposync for RHEL 7
 
 reposync -p /var/www/html	--download-metadata --repoid=rhel-7-server-rpms 
 reposync -p /var/www/html	--download-metadata --repoid=rhel-7-server-rh-common-rpms

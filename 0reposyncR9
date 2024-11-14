@@ -1,4 +1,4 @@
-#RHEL9 reposync hourly 
+#RHEL9 reposync
 
 reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-baseos-rpms
 reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-appstream-rpms
