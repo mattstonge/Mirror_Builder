@@ -123,7 +123,7 @@ function CronMaster()
 
   cp 0reposyncR9EUS /etc/cron.daily/
 
-	chmod +x /etc/cron.daily/0reposyncR9
+	chmod +x /etc/cron.daily/0reposyncR9EUS
 
 	AllDone
 
