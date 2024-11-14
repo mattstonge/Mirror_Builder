@@ -11,7 +11,8 @@ These repos will syncronize DAILY once installed
 
 *REQUIRMENTS:  
 
-1) Plan for at least 90GB (or more) per repo to be synced - all repos will be cloned to /var/www/html
+1) Plan for at least 150+ GB (or more) per repo to be synced - all repos will be cloned to /var/www/html 
+Ensure /var/www/html has SIGNIFICANT space to accomodate the future size of your mirrors...
 
 2) A separate machine or VM is required for each RHEL version (i.e. you cannot reposync both RHEL * & RHEL9 on the same machine)
 
@@ -23,5 +24,5 @@ These repos will syncronize DAILY once installed
 In my initial testing for RHEL7 repos, the first sync'ing took over a day and ~250GB of storage 
 One should plan for /var to have between 350-400 GiB of space.
 
-
+6) WARNING! Do not attempt to run the RHEL9 mirror and the RHEL9 EUS mirrors on the same machine as these must be kept on separate systems.
 
