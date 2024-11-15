@@ -9,7 +9,7 @@ These repos will syncronize DAILY once installed
             *In the case of RHEL 7 - you will also need an ELS subscription too...
 
 
-*REQUIRMENTS:  
+*REQUIREMENTS:  
 
 1) Plan for at least 150+ GB (or more) per repo to be synced - all repos will be cloned to /var/www/html 
 Ensure /var/www/html has SIGNIFICANT space to accomodate the future size of your mirrors...
