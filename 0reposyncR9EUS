@@ -1,9 +1,0 @@
-#RHEL9EUS reposync  
-
-reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-baseos-eus-rpms
-reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-appstream-eus-rpms
-reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-supplementary-eus-rpms
-reposync -p /var/www/html --download-metadata --repoid=codeready-builder-for-rhel-9-x86_64-eus-rpms
-
-echo "repos sync'ed..." | logger
-
