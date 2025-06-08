@@ -80,11 +80,11 @@ function InitialReposync()
 
 	reposync -p /var/www/html --download-metadata --repoid=rhel-10-for-x86_64-supplementary-rpms
 
-MYOUTPUT="$LOGGERPREF Intial Sync of Extensions Repo "
- 78         echo $MYOUTPUT
- 79         echo $MYOUTPUT | logger
- 80
- 81   reposync -p /var/www/html --download-metadata --repoid=rhel-10-for-x86_64-extensions-rpms
+  MYOUTPUT="$LOGGERPREF Intial Sync of Extensions Repo "
+        echo $MYOUTPUT
+        echo $MYOUTPUT | logger
+ 
+  reposync -p /var/www/html --download-metadata --repoid=rhel-10-for-x86_64-extensions-rpms
 
 
 	InitializingWeb
