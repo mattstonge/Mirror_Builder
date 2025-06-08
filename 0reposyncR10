@@ -1,0 +1,9 @@
+#RHEL10 reposync
+
+reposync -p /var/www/html --download-metadata --repoid=rhel-10-for-x86_64-baseos-rpms
+reposync -p /var/www/html --download-metadata --repoid=rhel-10-for-x86_64-appstream-rpms
+reposync -p /var/www/html --download-metadata --repoid=rhel-10-for-x86_64-supplementary-rpms
+reposync -p /var/www/html --download-metadata --repoid=rhel-10-for-x86_64-extensions-rpms
+
+echo "repos sync'ed..." | logger
+

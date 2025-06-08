@@ -5,7 +5,7 @@
 #
 # MIT License ( https://opensource.org/license/mit/ )
 #
-# v1.6  6/7/2025
+# v1.0 6/7/2025 
 ##################################
 
 
@@ -17,7 +17,7 @@
 
 # set this number to the latest release version number OR the 
 # release version you wish to stop at
-MYRELVER=9.6
+MYRELVER=10.0
 
 # Log entry preface - for easy searches
 LOGGERPREF="[Mirror_Builder] "
@@ -66,19 +66,25 @@ function InitialReposync()
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
 	
-	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-baseos-rpms
+	reposync -p /var/www/html --download-metadata --repoid=rhel-10-for-x86_64-baseos-rpms
 	
 	MYOUTPUT="$LOGGERPREF Intial Sync of AppStream Repo "
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
 
-	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-appstream-rpms
+	reposync -p /var/www/html --download-metadata --repoid=rhel-10-for-x86_64-appstream-rpms
 
 	MYOUTPUT="$LOGGERPREF Intial Sync of Supplementary Repo "
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
 
-	reposync -p /var/www/html --download-metadata --repoid=rhel-9-for-x86_64-supplementary-rpms
+	reposync -p /var/www/html --download-metadata --repoid=rhel-10-for-x86_64-supplementary-rpms
+
+MYOUTPUT="$LOGGERPREF Intial Sync of Extensions Repo "
+ 78         echo $MYOUTPUT
+ 79         echo $MYOUTPUT | logger
+ 80
+ 81   reposync -p /var/www/html --download-metadata --repoid=rhel-10-for-x86_64-extensions-rpms
 
 
 	InitializingWeb
@@ -108,9 +114,9 @@ function CronMaster()
         echo $MYOUTPUT
         echo $MYOUTPUT | logger
 
-  cp 0reposyncR9 /etc/cron.daily/
+  cp 0reposyncR10 /etc/cron.daily/
 
-	chmod +x /etc/cron.daily/0reposyncR9
+	chmod +x /etc/cron.daily/0reposyncR10
 
 	AllDone
 
