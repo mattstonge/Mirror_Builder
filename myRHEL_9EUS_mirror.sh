@@ -5,7 +5,7 @@
 #
 # MIT License ( https://opensource.org/license/mit/ )
 #
-# v1.0  11/14/2024
+# v1.1  11/12/2025
 # 
 #
 # WARNING!!!!!! WARNING!!!!!!
@@ -24,7 +24,7 @@
 # release version you wish to stop at
 # OPTIONS for this setting:  9.0 / 9.2 / 9.4 / 9.6 / 9.8
 # edit to your desired RHEL 9 EUS version
-MYRELVER=9.4
+MYRELVER=9.6
 
 # Log entry preface - for easy searches
 LOGGERPREF="[Mirror_Builder] "
