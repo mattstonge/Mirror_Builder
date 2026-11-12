@@ -5,7 +5,7 @@
 #
 # MIT License ( https://opensource.org/license/mit/ )
 #
-# v1.7  11/12/2025
+# v1.8  11/12/2026
 ##################################
 
 
@@ -17,7 +17,7 @@
 
 # set this number to the latest release version number OR the 
 # release version you wish to stop at
-MYRELVER=9.7
+MYRELVER=9.9
 
 # Log entry preface - for easy searches
 LOGGERPREF="[Mirror_Builder] "
